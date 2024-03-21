@@ -1,11 +1,14 @@
 import { useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 let CreateTaskComponent = (props) => {
-    let { task, setTask } = props
+    let { tasks, setTasks } = props
 
     let [name, setName] = useState('');
     let [place, setPlace] = useState('');
     let [priority, setPriority] = useState(0);
+
+    let navigate = useNavigate();
 
     let addTask = () => {
         let newTask = {
@@ -13,10 +16,11 @@ let CreateTaskComponent = (props) => {
           place: place,
           priority: priority
         }
-        setTask([...task, newTask])
+        setTasks([...tasks, newTask])
         setName('')
         setPlace('')
         setPriority('')
+        navigate('/')
     }
 
     return (

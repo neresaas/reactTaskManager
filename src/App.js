@@ -7,9 +7,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 
 function App() {
 
-  let [taskSelected, setTaskSelected] = useState({});
-
-  let [task, setTask] = useState([
+  let [tasks, setTasks] = useState([
     {
       name: 'Task1',
       place: 'School',
@@ -28,20 +26,19 @@ function App() {
         <ul className='navbar'>
           <li><Link to={'/'}>Tasks</Link></li>
           <li><Link to={'/createTask'}>Add Task</Link></li>
-          <li></li>
         </ul>
       </nav>
       <Routes>
         <Route path='/' element={
-          <ListOfTaskComponent setTask={setTask} task={task} setTaskSelected={setTaskSelected}/>
+          <ListOfTaskComponent setTasks={setTasks} tasks={tasks}/>
         }></Route>
 
         <Route path='/createTask' element={
-          <CreateTaskComponent task={task} setTask={setTask}/>
+          <CreateTaskComponent tasks={tasks} setTasks={setTasks}/>
         }></Route>
 
-        <Route path='/detailsTask' element={
-          <DetailsOfTaskComponent task={taskSelected}/>
+        <Route path='/detailsTask/:name' element={
+          <DetailsOfTaskComponent tasks={tasks}/>
         }></Route>
       </Routes>
 
