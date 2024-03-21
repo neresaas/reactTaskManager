@@ -3,6 +3,7 @@ import { useState} from 'react';
 import DetailsOfTaskComponent from './components/DetailsOfTaskComponent';
 import ListOfTaskComponent from './components/ListOfTaskComponent';
 import CreateTaskComponent from './components/CreateTaskComponent';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
 
@@ -23,11 +24,20 @@ function App() {
 
   return (
     <div className='container'>
-      <ListOfTaskComponent setTask={setTask} task={task} setTaskSelected={setTaskSelected}/>
+      <Routes>
+        <Route path='/' element={
+          <ListOfTaskComponent setTask={setTask} task={task} setTaskSelected={setTaskSelected}/>
+        }></Route>
 
-      <CreateTaskComponent task={task} setTask={setTask}/>
+        <Route path='/createTask' element={
+          <CreateTaskComponent task={task} setTask={setTask}/>
+        }></Route>
 
-      <DetailsOfTaskComponent task={taskSelected}/>
+        <Route path='/detailsTask' element={
+          <DetailsOfTaskComponent task={taskSelected}/>
+        }></Route>
+      </Routes>
+
     </div>
   );
 }
